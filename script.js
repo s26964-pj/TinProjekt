@@ -28,33 +28,30 @@ function getWeather() {
 }
 
 function displayWeatherForecast(data) {
-    // 'data.list' zawiera prognozę pogody na 5 dni z interwałem co 3 godziny
-
-    // Obliczamy dzień dla pierwszego wpisu
-    const firstDate = new Date(data.list[0].dt * 1000); // Timestamp w sekundach
+    const firstDate = new Date(data.list[0].dt * 1000);
     const currentDay = firstDate.getDate();
 
-    // Obiekt, który będzie przechowywał prognozę dla każdego dnia
-    const dailyForecast = {};
-
+    const dailyForecast = ["abc","aaa","xyz"];
     // Przetwarzamy dane prognozy
-    data.list.forEach(item => {
-        const date = new Date(item.dt * 1000);
-        const day = date.getDate();
+    // data.list.forEach(item => {
+    //     const date = new Date(item.dt * 1000);
+    //     const day = date.getDate();
 
-        // Sprawdzamy, czy już istnieje prognoza dla tego dnia
-        if (!dailyForecast[day]) {
-                dailyForecast[day] = {
-                date: date,
-                temperature: item.main.temp,
-                description: item.weather[0].description
-            };
-        }
-    });
-    displayDailyForecast(dailyForecast);
+    //     // Sprawdzamy, czy już istnieje prognoza dla tego dnia
+    //     if (!dailyForecast[day]) {
+    //             dailyForecast[day] = {
+    //             date: date,
+    //             temperature: item.main.temp,
+    //             description: item.weather[0].description
+    //         };
+    //     }
+    // });
+    dailyForecast.forEach(displayDailyForecast)
+    console.log(dailyForecast);
+    //displayDailyForecast(dailyForecast);
     // Wyświetlamy prognozy na stronie
 }
 
-function displayDailyForecast(dailyForecast) {
-    
+function displayDailyForecast(day) {
+    document.getElementById('section1').innerHTML = "abc";
 }
