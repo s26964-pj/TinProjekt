@@ -1,49 +1,141 @@
+/* Resetowanie stylów dla całej strony */
+body, h1, h2, h3, p, input, button {
+    margin: 0;
+    padding: 0;
+}
+
+/* Styl dla elementów blokowych */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    color: #333;
 }
 
-/* ułożenie */
-header{
+header {
+    background-color: #333;
+    color: #fff;
     text-align: center;
-    margin: 0 auto;
-    height: 100px;
-    width: 1000px;
-    
+    padding: 10px;
 }
 
-nav{
-    float:left;
-    height: 50px;
-    width: 300px;
-    text-align: left;
+nav {
+    text-align: center;
+    padding: 10px;
+    background-color: #eee;
 }
+
 nav label {
-    font-size: large;
+    display: block;
+    margin-bottom: 5px;
 }
 
-section{
-    margin: 60px auto;
-    width: 2500px;
-    height: 600px;
+input {
+    width: 80%;
+    padding: 10px;
+    margin-bottom: 15px;
+    font-size: 16px;
 }
 
-article{
-    float: left;
-    width: 300px;
-    height: 600px;
-    margin:50px 60px;
+button {
+    width: 80%;
+    padding: 12px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+/* Styl dla sekcji z prognozami */
+#weather-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+/* Styl dla pojedynczego artykułu */
+.day-forecast,
+#day2,
+#day3,
+#day4,
+#day5 {
+    border: 1px solid #ddd;
+    padding: 20px;
     text-align: center;
-    border: 1px black solid;
-}
-#day1{
-    height: 100px;
-    width: 100px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 20px;
 }
 
-/* weather */
+.day-forecast h3,
+#day2 h3,
+#day3 h3,
+#day4 h3,
+#day5 h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
 
-#weather-icon {
-    width: 100px;
-    height: 100px;
+.day-forecast p,
+#day2 p,
+#day3 p,
+#day4 p,
+#day5 p {
+    margin-bottom: 5px;
+}
+
+/* Media query dla mniejszych ekranów, np. telefony */
+@media only screen and (max-width: 600px) {
+    input, button {
+        width: 100%;
+    }
+
+    .day-forecast,
+    #day2,
+    #day3,
+    #day4,
+    #day5 {
+        max-width: 100%;
+        margin-right: 0;
+    }
+}
+
+/* Media query dla średnich ekranów, np. tablety */
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
+    input, button {
+        width: 50%;
+    }
+
+    .day-forecast,
+    #day2,
+    #day3,
+    #day4,
+    #day5 {
+        max-width: 50%;
+        margin-right: 0;
+    }
+}
+
+/* Media query dla większych ekranów, np. desktop */
+@media only screen and (min-width: 1025px) {
+    input, button {
+        width: 30%;
+    }
+
+    .day-forecast,
+    #day2,
+    #day3,
+    #day4,
+    #day5 {
+        max-width: 30%;
+        margin-right: 20px;
+    }
 }
