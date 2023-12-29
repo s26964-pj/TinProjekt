@@ -8,21 +8,23 @@ body, h1, h2, h3, p, input, button {
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
-    background-color: #f4f4f4;
-    color: #333;
+    background-color: #ecf0f1; /* Kolor tła strony */
+    color: #2c3e50; /* Kolor tekstu */
 }
 
+/* Nagłówek */
 header {
-    background-color: #333;
-    color: #fff;
+    background-color: #777777; /* Kolor tła nagłówka */
+    color: #fff; /* Kolor tekstu w nagłówku */
     text-align: center;
     padding: 10px;
 }
 
+/* Nawigacja */
 nav {
     text-align: center;
     padding: 10px;
-    background-color: #eee;
+    background-color: #ecf0f1; /* Kolor tła nawigacji */
 }
 
 nav label {
@@ -40,7 +42,7 @@ input {
 button {
     width: 80%;
     padding: 12px;
-    background-color: #333;
+    background-color:#777777;
     color: #fff;
     border: none;
     cursor: pointer;
@@ -48,10 +50,10 @@ button {
 }
 
 button:hover {
-    background-color: #555;
+    background-color: #b9b9b9;
 }
 
-/* Styl dla sekcji z prognozami */
+/* Sekcja z prognozami */
 #weather-section {
     display: flex;
     flex-wrap: wrap;
@@ -59,12 +61,8 @@ button:hover {
     padding: 20px;
 }
 
-/* Styl dla pojedynczego artykułu */
-.day-forecast,
-#day2,
-#day3,
-#day4,
-#day5 {
+/* Pojedynczy artykuł prognozy */
+.day-forecast {
     border: 1px solid #ddd;
     padding: 20px;
     text-align: center;
@@ -75,21 +73,86 @@ button:hover {
     margin-bottom: 20px;
 }
 
-.day-forecast h3,
-#day2 h3,
-#day3 h3,
-#day4 h3,
-#day5 h3 {
+.day-forecast h3 {
     font-size: 1.5em;
     margin-bottom: 10px;
 }
 
-.day-forecast p,
-#day2 p,
-#day3 p,
-#day4 p,
-#day5 p {
+.day-forecast p {
     margin-bottom: 5px;
+}
+
+/* Prognoza godzinowa */
+.hourly-forecast {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 10px;
+    border-top: 1px solid #ddd;
+    margin-top: 10px;
+    display: none;
+}
+
+.hourly-item {
+    text-align: center;
+    padding: 10px;
+    flex-basis: 30%;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+}
+
+.hourly-time {
+    font-weight: bold;
+}
+
+.hourly-icon {
+    width: 50px;
+    height: 50px;
+}
+
+.hourly-temperature {
+    margin: 5px 0;
+    font-weight: bold;
+}
+
+.hourly-description {
+    color: #777;
+}
+
+.hourly-item img {
+    margin-right: 5px;
+}
+
+/* Powitalny komunikat */
+#welcome-message {
+    text-align: center;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    margin: 20px auto;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+/* Animacja fadeIn */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.animated {
+    animation-duration: 1s;
+    animation-fill-mode: both;
+}
+
+.fadeIn {
+    animation-name: fadeIn;
 }
 
 /* Media query dla mniejszych ekranów, np. telefony */
@@ -98,11 +161,7 @@ button:hover {
         width: 100%;
     }
 
-    .day-forecast,
-    #day2,
-    #day3,
-    #day4,
-    #day5 {
+    .day-forecast {
         max-width: 100%;
         margin-right: 0;
     }
@@ -114,11 +173,7 @@ button:hover {
         width: 50%;
     }
 
-    .day-forecast,
-    #day2,
-    #day3,
-    #day4,
-    #day5 {
+    .day-forecast {
         max-width: 50%;
         margin-right: 0;
     }
@@ -130,11 +185,7 @@ button:hover {
         width: 30%;
     }
 
-    .day-forecast,
-    #day2,
-    #day3,
-    #day4,
-    #day5 {
+    .day-forecast {
         max-width: 30%;
         margin-right: 20px;
     }

@@ -16,11 +16,13 @@
     <nav>
         <label for="city">Enter city:</label>
         <input type="text" id="city" placeholder="Enter city name">
-        <button onclick="getWeather()">Get Weather</button>
+        <button id="search-btn">Get Weather</button>
     </nav>
 
-    <section id="weather-section">
-
+    <section id="weather-section" class="weather-container">
+        <div id="welcome-message" class="animated fadeIn">
+            <p>Welcome to the Weather App! Enter a city to get started.</p>
+        </div>
     </section>
 </body>
 </html>
