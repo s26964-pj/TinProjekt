@@ -141,12 +141,20 @@ function displayWeatherForecast(data) {
     });
 }
 
-// Dodajemy obsługę zdarzenia kliknięcia przycisku
+// Odświeżanie danych co minutę
+function refreshData() {
+    getWeather();
+}
+
+// Obsługa zdarzenia kliknięcia przycisku
 $(document).ready(function () {
     $('#search-btn').on('click', function () {
         getWeather();
     });
 
-    // Dodajemy animację fadeIn dla powitania
+    // Animacja fadeIn dla powitania
     $('#welcome-message').addClass('fadeIn');
+
+    // Odświeżanie danych
+    setInterval(refreshData, 60000); // 60000 milisekund = 1 minuta
 });
