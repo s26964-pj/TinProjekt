@@ -2,8 +2,10 @@ const apiKey = '5f82816ae5f6e914aea705bf5d99f1d7';
 
 // Funkcja do pobierania prognozy pogody na 5 dni
 function getWeather() {
+    // Pobieramy nazwę miasta z pola tekstowego
     const cityName = $('#city').val();
 
+    // Sprawdzamy, czy użytkownik wprowadził nazwę miasta
     if (!cityName) {
         alert('Please enter a city name');
         return;
@@ -11,17 +13,22 @@ function getWeather() {
 
     const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${apiKey}&units=metric`;
 
+    // Wysyłamy zapytanie AJAX do API OpenWeatherMap
     $.ajax({
         url: apiUrl,
         method: 'GET',
         success: function (data) {
+            // Sprawdzamy, czy uzyskano poprawne dane prognozy
             if (data && data.list && data.list.length > 0) {
+                // Wywołujemy funkcję do wyświetlania prognozy
                 displayWeatherForecast(data);
             } else {
+                // Wyświetlamy alert w przypadku błędu pobierania danych
                 alert('Error retrieving weather data. Please try again.');
             }
         },
         error: function (error) {
+            // Logujemy błąd w konsoli oraz wyświetlamy alert o błędzie
             console.log('Error:', error);
             alert('Error retrieving weather data. Please try again.');
         }
@@ -45,18 +52,18 @@ function displayWeatherForecast(data) {
             dailyForecast[day] = {
                 date: date,
                 temperatures: {
-                    day: [], // Tablica temperatur dla dnia
-                    night: [] // Tablica temperatur dla nocy
+                    day: [],
+                    night: []
                 },
                 description: item.weather[0].description,
-                icon: item.weather[0].icon, // Dodajemy informację o ikonie
-                sunrise: new Date(data.city.sunrise * 1000), // Dodajemy czas wschodu słońca
-                sunset: new Date(data.city.sunset * 1000), // Dodajemy czas zachodu słońca
-                hourlyForecast: [] // Tablica prognozy godzinowej
+                icon: item.weather[0].icon,
+                sunrise: new Date(data.city.sunrise * 1000),
+                sunset: new Date(data.city.sunset * 1000),
+                hourlyForecast: []
             };
         }
 
-        // Określamy, czy to dzień czy noc (możesz dostosować to do swojej lokalnej strefy czasowej)
+        // Określamy, czy to dzień czy noc
         const isDay = date.getHours() >= 6 && date.getHours() < 18;
 
         // Dodajemy temperaturę do odpowiedniej tablicy
@@ -94,7 +101,7 @@ function displayWeatherForecast(data) {
         const container = $(`<div id="${containerId}" class="day-forecast"></div>`);
         const date = $(`<h3 id="date-${day}">${dayData.date.toLocaleDateString()}</h3>`);
         const description = $(`<p id="description-${day}">${dayData.description}</p>`);
-        const icon = $(`<img id="weather-icon-${day}" src="http://openweathermap.org/img/wn/${dayData.icon}.png" alt="Weather Icon">`);
+        const icon = $(`<img id="weather-icon-${day}" src="https://openweathermap.org/img/wn/${dayData.icon}.png" alt="Weather Icon">`);
 
         // Liczymy średnią temperaturę dla dnia i nocy
         const avgTemperatureDay = dayData.temperatures.day.length > 0 ? dayData.temperatures.day.reduce((a, b) => a + b, 0) / dayData.temperatures.day.length : null;
@@ -113,7 +120,7 @@ function displayWeatherForecast(data) {
             const hourlyItem = $(`
                 <div class="hourly-item">
                     <p>${hourlyData.hour}:00</p>
-                    <img src="http://openweathermap.org/img/wn/${hourlyData.icon}.png" alt="Hourly Weather Icon">
+                    <img src="https://openweathermap.org/img/wn/${hourlyData.icon}.png" alt="Hourly Weather Icon">
                     <p>${roundToHalfDegrees(hourlyData.temperature)}°C</p>
                     <p>${hourlyData.description}</p>
                 </div>
@@ -121,17 +128,10 @@ function displayWeatherForecast(data) {
             hourlyForecastContainer.append(hourlyItem);
         });
 
-        // Dodajemy obsługę zdarzenia najechania na div
-        container.hover(
-            function () {
-                // Pokazujemy prognozę godzinową po najechaniu
-                hourlyForecastContainer.slideDown();
-            },
-            function () {
-                // Chowamy prognozę godzinową po opuszczeniu diva
-                hourlyForecastContainer.slideUp();
-            }
-        );
+        container.on('click touchstart', function () {
+            // Pokazujemy prognozę godzinową po kliknięciu lub dotknięciu
+            hourlyForecastContainer.slideToggle();
+        });
 
         // Dodajemy elementy do kontenera
         container.append(date, description, icon, temperatureDay, temperatureNight, hourlyForecastTitle, hourlyForecastContainer);
