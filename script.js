@@ -145,15 +145,6 @@ function displayWeatherForecast(data) {
             }
         });
 
-        // Nasłuchiwanie na kliknięcie na całej stronie, aby schować prognozę godzinową, jeśli jest widoczna
-        $(document).on('click touchstart', function (event) {
-            // Sprawdzamy czy prognoza godzinowa jest aktualnie widoczna i czy kliknięcie/dotknięcie nie nastąpiło wewnątrz kontenera
-            if (isHourlyForecastVisible && !$(event.target).closest(container).length) {
-                hourlyForecastContainer.slideUp();
-                isHourlyForecastVisible = false;
-            }
-        });
-
         // Dodajemy elementy do kontenera
         container.append(date, description, icon, temperatureDay, temperatureNight, hourlyForecastTitle, hourlyForecastContainer);
 
