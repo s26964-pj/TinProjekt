@@ -137,15 +137,6 @@ function displayWeatherForecast(data) {
             hourlyForecastContainer.slideToggle();
         });
 
-        // Alternatywne rozwiązanie dla urządzeń dotykowych (opcjonalne)
-        container.on('touchstart', function (event) {
-            // Zapobiegaj domyślnej akcji, aby uniknąć ewentualnych problemów
-            event.preventDefault();
-
-            // Pokazujemy lub ukrywamy prognozę godzinową
-            hourlyForecastContainer.slideToggle();
-        });
-
         // Dodajemy elementy do kontenera
         container.append(date, description, icon, temperatureDay, temperatureNight, hourlyForecastTitle, hourlyForecastContainer);
 
