@@ -129,9 +129,18 @@ function displayWeatherForecast(data) {
         });
 
         // Nasłuchiwanie na kliknięcie lub dotknięcie kontenera
-        container.on('tap', function (event) {
-            // Zapobiegamy propagacji zdarzenia, aby uniknąć przypadkowego wywołania zdarzenia na rodzicach
-            event.stopPropagation();
+        container.on('click tap', function (event) {
+            // Zapobiegaj domyślnej akcji, aby uniknąć ewentualnych problemów
+            event.preventDefault();
+
+            // Pokazujemy lub ukrywamy prognozę godzinową
+            hourlyForecastContainer.slideToggle();
+        });
+
+        // Alternatywne rozwiązanie dla urządzeń dotykowych (opcjonalne)
+        container.on('touchstart', function (event) {
+            // Zapobiegaj domyślnej akcji, aby uniknąć ewentualnych problemów
+            event.preventDefault();
 
             // Pokazujemy lub ukrywamy prognozę godzinową
             hourlyForecastContainer.slideToggle();
